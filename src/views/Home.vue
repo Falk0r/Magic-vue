@@ -1,0 +1,91 @@
+<template>
+  <div class="section">
+    <div class="columns">
+      <listAll 
+        :list="listing" 
+        :getCard="getCard" 
+        :beginning="beginning" 
+        :ending="ending"
+         />
+      <card 
+        :card="cardInfo"
+        :getArtist="getArtist"
+        />
+    </div>
+    <pagination 
+    :getPage="getPage" 
+    :list="listing"
+    :page="page"
+    :previousPage="previousPage" 
+    :nextPage="nextPage"
+    />
+  </div>
+</template>
+
+<script>
+// @ is an alias to /src
+import listAll from '@/components/listAll.vue'
+import card from "@/components/card.vue"
+import pagination from '@/components/pagination.vue'
+import axios from 'axios'
+
+export default {
+  name: 'Home',
+  components: {
+    listAll,
+    card,
+    pagination
+  },
+  data(){
+    return {
+      listing : null,
+      cardInfo : null,
+      page : 1,
+      beginning : 0,
+      ending : 15
+    }
+  },
+  beforeMount () {
+    axios
+      .get('https://api.scryfall.com/catalog/card-names')
+      .then(response => {
+        this.listing = response.data.data
+      })
+  },
+  methods : {
+    getCard(item) {
+      let url = 'https://api.scryfall.com/cards/named?exact=' + item;
+      axios
+        .get(url)
+        .then(response => {
+          this.cardInfo = response.data;
+        })
+    },
+    getPage(page){
+      this.beginning = page * 15;
+      this.ending = this.beginning + 15;
+      this.page = page;
+    },
+    nextPage(){
+      console.log('next page');
+      if (this.page < parseInt(this.listing.length/15)) {
+        this.getPage(this.page + 1)
+      }
+    },
+    previousPage(){
+      if (this.page > 1) {
+        this.getPage(this.page - 1)
+      }
+    },
+    getArtist(artist){
+      let url = 'https://api.scryfall.com/cards/search?q=a:' + artist
+      console.log(url);
+      axios
+        .get(url)
+        .then(response => {
+          console.log(response);
+        })
+    }
+  }
+}
+</script>
