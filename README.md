@@ -6,7 +6,7 @@ A la base, ce projet a été proposé lors de ma formation en developpement web 
 
 J'ai décidé de "corser" un peu la chose et de transposer le cours sur le framework __VueJS__ fraichement acquis.
 
-Le CSS est géré par le frameword __Bulma__.
+Le CSS est géré par le framework __Bulma__.
 
 Vous trouverez la base du cours (un peu inachevé du coup) dans le dossier __projectJS__ de cette application.
 
@@ -50,7 +50,7 @@ Ces données sont ainsi transmises au composant __listAll.vue__ via les props.
         :ending="ending"
       />
 ```
-et gérées par le composant __listAll.vue__ en déroulant la liste avec une directive v-for :
+Et gérées par le composant __listAll.vue__ en déroulant la liste avec une directive v-for :
 ```html
 <li v-for="item in list.slice(beginning, ending)" :key="item" @click="getCard(item)"><button class="button is-fullwidth">{{item}}</button></li>
 ```
