@@ -1,23 +1,25 @@
 <template>
   <div class="section">
     <div class="columns">
+      <card 
+        :card="cardInfo"
+        :getArtist="getArtist"
+        :getColor="getColor"
+        :verifText="verifText"
+      />
       <listAll 
         :list="listing" 
         :getCard="getCard" 
         :beginning="beginning" 
         :ending="ending"
-         />
-      <card 
-        :card="cardInfo"
-        :getArtist="getArtist"
-        />
+      />
     </div>
     <pagination 
-    :getPage="getPage" 
-    :list="listing"
-    :page="page"
-    :previousPage="previousPage" 
-    :nextPage="nextPage"
+      :getPage="getPage" 
+      :list="listing"
+      :page="page"
+      :previousPage="previousPage" 
+      :nextPage="nextPage"
     />
   </div>
 </template>
@@ -40,7 +42,7 @@ export default {
     return {
       listing : null,
       cardInfo : null,
-      page : 1,
+      page : 0,
       beginning : 0,
       ending : 15
     }
@@ -67,24 +69,42 @@ export default {
       this.page = page;
     },
     nextPage(){
-      console.log('next page');
       if (this.page < parseInt(this.listing.length/15)) {
         this.getPage(this.page + 1)
       }
     },
     previousPage(){
-      if (this.page > 1) {
+      if (this.page > 0) {
         this.getPage(this.page - 1)
       }
     },
+    getColor(color){
+      let img = `https://img.scryfall.com/symbology/${color}.svg`
+      return img;
+    },
     getArtist(artist){
       let url = 'https://api.scryfall.com/cards/search?q=a:' + artist
-      console.log(url);
       axios
         .get(url)
-        .then(response => {
-          console.log(response);
+        .then(() => {
+
+          //find artist
         })
+    },
+    verifText(text){
+      const patern = /\{.\}|\{.\/.\}|\{\w\}/g;
+
+      let match = text.match(patern);
+      if (match) {
+      match.forEach(element => {
+        let newtext = element.replace('{', '');
+        newtext = newtext.replace('}', '');
+        newtext = newtext.replace('/', '');
+        newtext = `<img src="https://img.scryfall.com/symbology/${newtext}.svg">`;
+        text = text.replace(element, newtext);
+      });
+      }
+      return text;
     }
   }
 }

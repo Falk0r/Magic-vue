@@ -1,13 +1,10 @@
 <template>
   <div id="app">
-        <nav class="navbar is-dark">
+    <nav class="navbar is-dark">
         <div class="navbar-brand">
             <div class="navbar-item">
               <img src="logo.png" alt="logo">
             </div>
-        </div>
-        <div class="navbar-item">
-          <router-link to="/artist">Artist</router-link>
         </div>
     </nav>
     <router-view/>
@@ -35,4 +32,14 @@
     }
   }
 }
+.navbar-item img{
+  max-height: 5.75rem;
+}
+
+body{
+  background: no-repeat url('https://i.pinimg.com/originals/e1/11/5a/e1115afea56dcaf0c273a4f3d9fc7f3a.jpg');
+  background-size: cover;
+  background-repeat: repeat-y;
+}
+
 </style>

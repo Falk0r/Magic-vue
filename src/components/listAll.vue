@@ -5,13 +5,10 @@
                 <li v-for="item in list.slice(beginning, ending)" :key="item" @click="getCard(item)"><button class="button is-fullwidth">{{item}}</button></li>
             </ul>
         </div>
-        
     </div>
 </template>
 
 <script>
-
-
 export default {
     name : 'listAll',
     props: ['list', 'getCard', 'beginning', 'ending'],
@@ -19,9 +16,11 @@ export default {
 </script>
 
 <style>
-
 li{
     cursor: pointer;
     list-style: none;
+}
+.content ul{
+    margin-top: 0;
 }
 </style>
