@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <title>Magic</title>
+</head>
+<body>
+    <nav class="navbar is-dark">
+        <div class="navbar-brand">
+            <div class="navbar-item">
+                <i class="far fa-address-card"></i>
+            </div>
+            <h1 class="navbar-item">Magic, la récolte</h1>
+          </div>
+    </nav>
+    <div class="section">
+      <div class="columns">
+        <div class="column is-two-fifths">
+            <div class="content">
+                <ul id="cards-list"></ul>
+            </div>
+        </div>
+        <div class="column is-centered">
+            <div class="card">
+                <div class="card-image is-centered">
+                  <figure class="image is-centered">
+                    <img src="">
+                  </figure>
+                </div>
+                <div class="card-content">
+                  <div class="media">
+                    <div class="media-content">
+                      <p class="title is-4"></p>
+                      <p class="subtitle is-6"></p>
+                    </div>
+                  </div>
+              
+                  <div class="content">
+                    <p></p>
+                    <article class="message">
+                        <div class="message-body">
+                        </div>
+                      </article>
+                  </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        <a class="pagination-previous" onclick="previous()">Previous </a>
+        <a class="pagination-next" onclick="next()">Next page</a>
+        <ul class="pagination-list">
+          <li><a class="pagination-link" id="first" onclick="getPage(this)">1</a></li>
+          <li><span class="pagination-ellipsis">&hellip;</span></li>
+          <li><a class="pagination-link" id="previous" onclick="getPage(this)"></a></li>
+          <li><a class="pagination-link is-current" id="middle" onclick="getPage(this)"></a></li>
+          <li><a class="pagination-link" id="next" onclick="getPage(this)"></a></li>
+          <li><span class="pagination-ellipsis">&hellip;</span></li>
+          <li><a class="pagination-link" id="last" onclick="getPage(this)"></a></li>
+        </ul>
+      </nav>
+</body>
+<script src="./script.js"></script>
+</html>

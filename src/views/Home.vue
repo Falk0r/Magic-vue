@@ -93,7 +93,6 @@ export default {
     },
     verifText(text){
       const patern = /\{.\}|\{.\/.\}|\{\w\}/g;
-
       let match = text.match(patern);
       if (match) {
       match.forEach(element => {

@@ -1,0 +1,14 @@
+li{
+    cursor: pointer;
+}
+.image img{
+    height: 450px;
+    width: auto;
+}
+.image{
+    justify-content: center;
+    display: flex;
+}
+.card{
+    position: sticky;
+}
